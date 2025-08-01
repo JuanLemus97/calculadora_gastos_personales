@@ -13,8 +13,5 @@ __pycache__/
 *.log
 *.tmp
 
-# Archivos de datos
-gastos.json
-
 # Archivos de despliegue locales
 *.sqlite3
