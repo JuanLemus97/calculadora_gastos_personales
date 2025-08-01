@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Calculadora de Gastos</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css')}}">
+    </head>
+    <body>
+        <h1>Calculadora de Gastos</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Inicio</a> |
+            <a href="{{ url_for('agregar') }}">Agregar gasto</a> |
+            <a href="{{ url_for('gastos') }}">Ver gastos</a> |
+            <a href="{{ url_for('totales') }}">Totales por Categoría</a> 
+        </nav>
+        <hr>
+        {% block contenido %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h2>Gastos Registrados</h2>
+<ul>
+    {% for gasto in gastos %}
+    <li>
+        {{ gasto.fecha }} - {{ gasto.categoria }}: ${{ gasto.monto }} - {{ gasto.descripcion }}
+        <!-- Enlace de eliminación con confirmación -->
+         <a href="{{ url_for('eliminar', idx=loop.index0) }}"
+            onclick="return confirm('¿Seguro que deseas eliminar este gasto?');">
+            🗑️ Eliminar
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+<form action="{{ url_for('descargar') }}">
+    <button type="submit">📥 Exportar gastos a CSV</button>
+</form>
+{% endblock %}
