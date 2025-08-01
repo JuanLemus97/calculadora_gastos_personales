@@ -1,0 +1,20 @@
+# Entornos virtuales
+venv/
+.env/
+
+# Archivos Python compilados
+__pycache__/
+*.pyc
+
+# Archivos del sistema
+.DS_Store
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos de datos
+gastos.json
+
+# Archivos de despliegue locales
+*.sqlite3
