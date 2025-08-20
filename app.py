@@ -17,7 +17,7 @@ def cargar_gastos():
     lista = []
     for gasto in gastos:
         fecha = gasto.fecha
-        if isinstance(fecha. str):
+        if isinstance(fecha, str):
             fecha_str = fecha
         elif fecha:
             fecha_str = fecha.strftime("%d-%m-%Y")
