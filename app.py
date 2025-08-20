@@ -49,7 +49,7 @@ def agregar():
             session.commit()
             session.close()
         
-            return redirect(url_for("/agregar"))
+            return redirect(url_for("agregar"))
         
         except Exception as e:
             import traceback
