@@ -14,15 +14,22 @@ def cargar_gastos():
     session = Session()
     gastos = session.query(Gasto).order_by(Gasto.fecha.desc()).all()
     session.close()
-    return [
-        {
-            "fecha": gasto.fecha.strftime("%d-%m-%Y") if gasto.fecha else "",
+    lista = []
+    for gasto in gastos:
+        fecha = gasto.fecha
+        if isinstance(fecha. str):
+            fecha_str = fecha
+        elif fecha:
+            fecha_str = fecha.strftime("%d-%m-%Y")
+        else:
+            fecha_str = ""
+        lista.append({
+            "fecha": fecha_str,
             "categoria": gasto.categoria,
             "monto": gasto.monto,
             "descripcion": gasto.descripcion
-        }
-        for gasto in gastos
-    ]
+        })
+    return lista
 # Guardar datos
 def guardar_gastos(gastos):
     with open(ARCHIVO, "w") as f:
