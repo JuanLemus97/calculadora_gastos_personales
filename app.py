@@ -40,7 +40,7 @@ def agregar():
     session.add(nuevo)
     session.commit()
     session.close()
-    return redirect("/")
+    return redirect("/agregar")
     """ if request.method == "POST":
         categoria = request.form["categoria"]
         monto = float(request.form["monto"])
