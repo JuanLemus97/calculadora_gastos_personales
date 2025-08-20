@@ -35,17 +35,27 @@ def index():
 @app.route("/agregar", methods=["GET", "POST"])
 def agregar():
     if request.method == "POST":
-        session = Session()
-        nuevo = Gasto(
-            fecha=datetime.now().strftime("%d-%m-%Y"),
-            categoria=request.form["categoria"],
-            monto=float(request.form["monto"]),
-            descripcion=request.form["descripcion"]
-        )
-        session.add(nuevo)
-        session.commit()
-        session.close()
-        return redirect(url_for("agregar.html"))
+        try:
+            categoria = request.form["categoria"]
+            monto = float(request.form["monto"])
+            descripcion = request.form.get("descripcion", "")
+            nuevo = Gasto(
+                categoria=categoria,
+                monto=monto,
+                descripcion=descripcion
+            )
+            session = Session()
+            session.add(nuevo)
+            session.commit()
+            session.close()
+        
+            return redirect(url_for("agregar.html"))
+        
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            return f"Error al agregar el gasto: {str(e)}", 500
+        
     return render_template("agregar.html")
 
 @app.route("/gastos")
