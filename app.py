@@ -46,7 +46,7 @@ def agregar():
         session.commit()
         session.close()
         return redirect(url_for("agregar.html"))
-    return render_template("/agregar")
+    return render_template("agregar.html")
 
 @app.route("/gastos")
 def gastos():
