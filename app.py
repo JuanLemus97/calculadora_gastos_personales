@@ -23,7 +23,10 @@ def guardar_gastos(gastos):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    session = Session()
+    gastos = session.query(Gasto).all()
+    session.close()
+    return render_template("index.html", gastos=gastos)
 
 @app.route("/agregar", methods=["POST"])
 def agregar():
