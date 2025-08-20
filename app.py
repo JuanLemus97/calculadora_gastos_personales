@@ -33,7 +33,7 @@ def agregar():
     if request.method == "POST":
         session = Session()
         nuevo = Gasto(
-            fecha=request.form["fecha"],
+            fecha=datetime.now().strftime("%d-%m-%Y"),
             categoria=request.form["categoria"],
             monto=float(request.form["monto"]),
             descripcion=request.form["descripcion"]
