@@ -10,7 +10,7 @@
     </tr>
     {% for gasto in gastos %}
     <tr>
-        <td>{{ gasto.fecha.strftime("%d-%m-%Y %H:%M") }}</td>
+        <td>{{ gasto.fecha.strftime("%d-%m-%Y) }}</td>
         <td>{{ gasto.categoria }}</td>
         <td>${{ gasto.monto }}</td>
         <td>{{ gasto.descripcion }}</td>
