@@ -15,10 +15,6 @@ def cargar_gastos():
     gastos = session.query(Gasto).order_by(Gasto.fecha.desc()).all()
     session.close()
     return gastos
-    """ if os.path.exists(ARCHIVO):
-        with open(ARCHIVO, "r") as f:
-            return json.load(f)
-    return [] """
 
 # Guardar datos
 def guardar_gastos(gastos):
@@ -60,8 +56,13 @@ def agregar():
 
 @app.route("/gastos")
 def gastos():
-    gastos = cargar_gastos()
-    return render_template("gastos.html", gastos=gastos)
+    try:
+        gastos = cargar_gastos()
+        return render_template("gastos.html", gastos=gastos)
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return f"Error al cargar los gastos: {str(e)}", 500
 
 @app.route("/eliminar/<int:idx>")
 def eliminar(idx):
