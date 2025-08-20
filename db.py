@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
-engine = create_engine("postgresql://user:password@localhost/calculadora_gastos")
+engine = create_engine("postgresql://cal_gastos_db_user:5AGCwr9zv0w7ypN415NkFW2ve5KSYPqw@dpg-d2j2ulogjchc73fp20a0-a/cal_gastos_db")
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
 
