@@ -11,10 +11,28 @@ ARCHIVO = "gastos.json"
 
 # Cargar datos
 def cargar_gastos():
-    session = Session()
-    gastos = session.query(Gasto).order_by(Gasto.fecha.desc()).all()
-    session.close()
-    return gastos
+    try:
+        conn = psycopg2.connect(DATABASE_URL)
+        cur = conn.cursor()
+        cur.execute("SELECT fecha, categoria, monto, descripcion FROM gastos")
+        filas = cur.fetchall()
+        conn.close()
+
+        gastos = []
+        for filas in filas:
+            fecha_str = filas[0]
+            # Convertir el string ISO a datetime
+            fecha_dt = datetime.fromisoformat(fecha_str) if isinstance(fecha_str, str) else fecha_str
+            gastos.append({
+                "fecha": fecha_dt,
+                "categoria": filas[1],
+                "monto": float(filas[2]),
+                "descripcion": filas[3]
+            })
+        return gastos
+    except Exception as e:
+        print(f"Error al cargar los gastos: {str(e)}")
+        return []
 
 # Guardar datos
 def guardar_gastos(gastos):
