@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 {% block contenido %}
 <h2>Gastos Registrados</h2>
-<ul>
+<table>
+    <tr>
+        <th>Fecha</th>
+        <th>Categoría</th>
+        <th>Monto</th>
+        <th>Descripción</th>
+    </tr>
+    {% for gasto in gastos %}
+    <tr>
+        <td>{{ gasto.fecha.strftime("%d-%m-%Y %H:%M") }}</td>
+        <td>{{ gasto.categoria }}</td>
+        <td>${{ gasto.monto }}</td>
+        <td>{{ gasto.descripcion }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<!-- <ul>
     {% for gasto in gastos %}
     <li>
-        {{ gasto.fecha }} - {{ gasto.categoria }}: ${{ gasto.monto }} - {{ gasto.descripcion }}
+        {{ gasto.fecha }} - {{ gasto.categoria }}: ${{ gasto.monto }} - {{ gasto.descripcion }} -->
         <!-- Enlace de eliminación con confirmación -->
-         <a href="{{ url_for('eliminar', idx=loop.index0) }}"
+         <!-- <a href="{{ url_for('eliminar', idx=loop.index0) }}"
             onclick="return confirm('¿Seguro que deseas eliminar este gasto?');">
             🗑️ Eliminar
         </a>
@@ -15,5 +31,5 @@
 </ul>
 <form action="{{ url_for('descargar') }}">
     <button type="submit">📥 Exportar gastos a CSV</button>
-</form>
+</form> -->
 {% endblock %}

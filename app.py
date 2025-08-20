@@ -11,10 +11,14 @@ ARCHIVO = "gastos.json"
 
 # Cargar datos
 def cargar_gastos():
-    if os.path.exists(ARCHIVO):
+    session = Session()
+    gastos = session.query(Gasto).order_by(Gasto.fecha.desc()).all()
+    session.close()
+    return gastos
+    """ if os.path.exists(ARCHIVO):
         with open(ARCHIVO, "r") as f:
             return json.load(f)
-    return []
+    return [] """
 
 # Guardar datos
 def guardar_gastos(gastos):
@@ -41,7 +45,7 @@ def agregar():
         session.add(nuevo)
         session.commit()
         session.close()
-        return redirect(url_for("index"))
+        return redirect(url_for("agregar.html"))
     return render_template("agregar.html")
 
 @app.route("/gastos")
