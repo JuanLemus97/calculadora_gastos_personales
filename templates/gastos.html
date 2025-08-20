@@ -10,7 +10,7 @@
     </tr>
     {% for gasto in gastos %}
     <tr>
-        <td>{{ gasto.fecha.strftime("%d-%m-%Y) }}</td>
+        <td>{{ gasto.fecha.strftime("%d-%m-%Y") }}</td>
         <td>{{ gasto.categoria }}</td>
         <td>${{ gasto.monto }}</td>
         <td>{{ gasto.descripcion }}</td>
@@ -28,8 +28,8 @@
         </a>
     </li>
     {% endfor %}
-</ul>
+</ul> -->
 <form action="{{ url_for('descargar') }}">
     <button type="submit">📥 Exportar gastos a CSV</button>
-</form> -->
+</form> 
 {% endblock %}
