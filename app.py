@@ -28,29 +28,21 @@ def index():
     session.close()
     return render_template("index.html", gastos=gastos)
 
-@app.route("/agregar", methods=["POST"])
+@app.route("/agregar", methods=["GET", "POST"])
 def agregar():
-    session = Session()
-    nuevo = Gasto(
-        fecha = request.form["fecha"],
-        categoria = request.form["categoria"],
-        monto = float(request.form["monto"]),
-        descripcion = request.form["descripcion"]
-    )
-    session.add(nuevo)
-    session.commit()
-    session.close()
-    return redirect("agregar.html")
-    """ if request.method == "POST":
-        categoria = request.form["categoria"]
-        monto = float(request.form["monto"])
-        fecha = datetime.today().strftime("%d-%m-%Y")
-        descripcion = request.form["descripcion"]
-        gastos = cargar_gastos()
-        gastos.append({"categoria": categoria, "monto": monto, "fecha": fecha, "descripcion": descripcion})
-        guardar_gastos(gastos)
-        return redirect(url_for("gastos"))
-    return render_template("agregar.html") """
+    if request.method == "POST":
+        session = Session()
+        nuevo = Gasto(
+            fecha=request.form["fecha"],
+            categoria=request.form["categoria"],
+            monto=float(request.form["monto"]),
+            descripcion=request.form["descripcion"]
+        )
+        session.add(nuevo)
+        session.commit()
+        session.close()
+        return redirect(url_for("index"))
+    return render_template("agregar.html")
 
 @app.route("/gastos")
 def gastos():
