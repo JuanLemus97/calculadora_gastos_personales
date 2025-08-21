@@ -17,12 +17,17 @@ def cargar_gastos():
     lista = []
     for gasto in gastos:
         fecha = gasto.fecha
-        if isinstance(fecha, str):
-            fecha_str = fecha
-        elif fecha:
-            fecha_str = fecha.strftime("%d-%m-%Y")
-        else:
-            fecha_str = ""
+        fecha_str = ""
+        if fecha:
+            if hasattr(fecha, "strftime"):
+                fecha_str = fecha.strftime("%d-%m-%Y")
+            elif isinstance(fecha, str):
+                # Intenta convertir el string a datetime
+                try:
+                    fecha_dt = datetime.fromisoformat(fecha)
+                    fecha_str = fecha_dt.strftime("%d-%m-%Y")
+                except Exception:
+                    fecha_str = fecha # Si falla, deja el string tal cual
         lista.append({
             "fecha": fecha_str,
             "categoria": gasto.categoria,
