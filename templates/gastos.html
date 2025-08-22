@@ -10,25 +10,25 @@
     </tr>
     {% for gasto in gastos %}
     <tr>
-        <td>{{ gasto.fecha.strftime("%d-%m-%Y") }}</td>
+        <td>{{ gasto.fecha }}</td>
         <td>{{ gasto.categoria }}</td>
         <td>${{ gasto.monto }}</td>
         <td>{{ gasto.descripcion }}</td>
     </tr>
     {% endfor %}
 </table>
-<!-- <ul>
+<ul>
     {% for gasto in gastos %}
     <li>
         {{ gasto.fecha }} - {{ gasto.categoria }}: ${{ gasto.monto }} - {{ gasto.descripcion }} -->
         <!-- Enlace de eliminación con confirmación -->
-         <!-- <a href="{{ url_for('eliminar', idx=loop.index0) }}"
+        <a href="{{ url_for('eliminar', gasto_id=gasto.id) }}"
             onclick="return confirm('¿Seguro que deseas eliminar este gasto?');">
             🗑️ Eliminar
         </a>
     </li>
     {% endfor %}
-</ul> -->
+</ul>
 <form action="{{ url_for('descargar') }}">
     <button type="submit">📥 Exportar gastos a CSV</button>
 </form> 
