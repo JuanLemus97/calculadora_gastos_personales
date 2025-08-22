@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block contenido %}
 <h2>Totales por Categoría</h2>
-<ul>
+<table>
+    <tr>
+        <th>Categoría</th>
+        <th>Total</th>
+    </tr>
     {% for categoria, total in resumen.items() %}
-        <li>{{ categoria }}: ${{ total }}</li>
+    <tr>
+        <th>{{ categoria }}</th>
+        <th>${{ total }}</th>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 <a href="{{ url_for('gastos') }}">Volver a la lista de gastos</a>
 {% endblock %}
