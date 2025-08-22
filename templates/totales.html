@@ -2,10 +2,6 @@
 {% block contenido %}
 <h2>Totales por Categoría</h2>
 <table>
-    <tr>
-        <th>Categoría</th>
-        <th>Total</th>
-    </tr>
     {% for categoria, total in resumen.items() %}
     <tr>
         <td>{{ categoria }}</td>
