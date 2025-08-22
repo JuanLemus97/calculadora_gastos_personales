@@ -14,10 +14,10 @@
         <td>{{ gasto.categoria }}</td>
         <td>${{ gasto.monto }}</td>
         <td>{{ gasto.descripcion }}</td>
-        <a href="{{ url_for('eliminar', gasto_id=gasto.id) }}"
+        <td><a href="{{ url_for('eliminar', gasto_id=gasto.id) }}"
             onclick="return confirm('¿Seguro que deseas eliminar este gasto?');">
             🗑️ Eliminar
-        </a>
+        </a></td>
     </tr>
     {% endfor %}
 </table>
