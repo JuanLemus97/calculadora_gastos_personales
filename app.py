@@ -74,7 +74,7 @@ def gastos():
         traceback.print_exc()
         return f"Error al cargar los gastos: {str(e)}", 500
 
-@app.route("/eliminar/<int:idx>")
+@app.route("/eliminar/<int:gasto_id>")
 def eliminar(gasto_id):
     session = Session()
     gasto = session.query(Gasto).filter_by(id=gasto_id).first()
