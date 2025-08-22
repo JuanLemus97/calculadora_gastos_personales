@@ -9,5 +9,6 @@
     </tr>
     {% endfor %}
 </table>
-<input href="{{ url_for('gastos') }}" type="submit" value="Volver a la lista de gastos">
+<form action="{{ url_for('gastos') }}"></form>
+<input type="submit" value="Volver a la lista de gastos">
 {% endblock %}
