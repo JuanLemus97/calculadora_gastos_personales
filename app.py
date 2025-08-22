@@ -76,8 +76,29 @@ def agregar():
 @app.route("/gastos")
 def gastos():
     try:
-        gastos = cargar_gastos()
-        return render_template("gastos.html", gastos=gastos)
+        session = Session()
+        gastos = session.query(Gasto).order_by(Gasto.fecha.desc()).all()
+        session.close()
+        lista = []
+        for gasto in gastos:
+            fecha = gasto.fecha
+            if fecha is None:
+                fecha_str = ""
+            elif hasattr(fecha, "strftime"):
+                fecha_str = fecha.strftime("%d-%m-%Y")
+            else:
+                try:
+                    fecha_dt = datetime.fromisoformat(str(fecha))
+                    fecha_str = fecha.strftime("%d-%m-%Y")
+                except Exception:
+                    fecha_str = str(fecha)
+            lista.append({
+                "fecha": fecha_str,
+                "categoria": gasto.categoria,
+                "monto": gasto.monto,
+                "descripcion": gasto.descripcion
+            })
+        return render_template("gastos.html", gastos=lista)
     except Exception as e:
         import traceback
         traceback.print_exc()
