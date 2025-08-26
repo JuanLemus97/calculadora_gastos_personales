@@ -7,9 +7,9 @@
     <input type="date" name="fecha_inicio" value="{{ fecha_inicio or '' }}">
     <input type="date" name="fecha_fin" value="{{ fecha_fin or '' }}">
     <button type="submit">Buscar</button>
-</form>
-<form action="{{ url_for('gastos') }}">
-    <input type="submit" value="Limpiar">
+    <form action="{{ url_for('gastos') }}">
+        <input type="submit" value="Limpiar">
+    </form>
 </form>
 <table>
     <tr>
