@@ -71,7 +71,27 @@ tr:hover {
 }
 .filtro-gastos {
     display: flex;
-    gap: 10px;
+    gap: 10px; /* Espacio entre elementos*/
+    flex-wrap: wrap;/* Si la pantalla es pequeña, se acomodan en varias líneas */
     align-items: center;
     margin-bottom: 20px;
+}
+.filtro-gastos input,
+.filtro-gastos button,
+.filtro-gastos a {
+    width: auto; /* Ya no ocupan todo el ancho */
+    flex: 1; /* Se ajustan proporcionalmente */
+    min-width: 120px; /* Tamaño mínimo para que no se hagan muy pequeños */
+}
+.filtro-gastos a {
+    display: inline-block;
+    padding: 8px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+}
+.filtro-gastos a:hover {
+    background: #c0392b;
 }
