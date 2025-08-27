@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block contenido %}
 <h2>Gastos Registrados</h2>
-<form method="get">
+<form method="get" class="filtro-gastos">
     <input type="text" name="categoria" placeholder="Categoría" value="{{ categoria or '' }}">
     <input type="text" name="descripcion" placeholder="Descripción" value="{{ descripcion or '' }}">
     <input type="date" name="fecha_inicio" value="{{ fecha_inicio or '' }}">
